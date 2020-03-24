@@ -140,8 +140,7 @@ class IndexController extends AbstractController
      * UserStory 1 : m² to hectare
      * @return void
      */
-    public
-    function unit()
+    public function unit()
     {
         $fausseExtraction =[
             ['unit' => 'm2', 'definition' => 'Un carré de 1m x 1m','source'=>'https://fr.wikipedia.org/wiki/M%C3%A8tre_carr%C3%A9'],
@@ -152,6 +151,34 @@ class IndexController extends AbstractController
 
         $myObject = new JSONToReturn($fausseExtraction);
         return new JsonResponse($myObject);
+    }
+
+    /**
+
+     * @Route("/unit", name="unit", methods={"GET"})
+
+     */
+
+    public function showUnits()
+
+    {
+
+        $encoder = new JsonEncoder();
+
+        $defaultContext = [
+            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object, $format, $context) {
+                return $object->getSource();
+            },
+        ];
+
+        $normalizer = new ObjectNormalizer(null, null, null, null, null, null, $defaultContext);
+
+        $serializer = new Serializer([$normalizer], [$encoder]);
+
+        $displayAllUnits = new JSONToReturn($this->unitService->displayUnits($this->unitRepository));
+
+        return new JsonResponse($serializer->serialize($displayAllUnits, 'json'), Response::HTTP_OK, [], true);
+
     }
 }
 
