@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="row justify-content-center"> 
+        <div class="col-md-8"> 
+            <h1>Liste des unités</h1> 
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Symbole</th>
+                <th scope="col">Définition</th>
+                <th scope="col">Lien vers documentation</th>
+                </tr>
+            </thead>
+                {% for unit in units %}
+                    <tr>
+                        <td>{{ unit.symbol }}</td>
+                        <td>{{ unit.definition}}</td>
+                        <td>
+                        <a href="{{ unit.source.url}}">{{ unit.source.url}}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
