@@ -8,41 +8,11 @@
         <div class="col-md-8"> 
             <div class="jumbotron">
                 <h1>Convertisseur magique</h1> 
-            <form method="post" action="/converting"> 
-
-            <label for="valueToConvert">Convertir</label> 
-            <input type="text" name="valueToConvert" id="valueToConvert"> 
-
-
-            <select name="inUnit" id="inUnit"> 
-            {% for unit in units %}
-                <option value="{{unit.symbol}}">{{unit.symbol}}</option> 
-            {% endfor %}
-            </select> 
-
-            en
-
-            <select name="outUnit" id="outUnit"> 
-            {% for unit in units %}
-                <option value="{{unit.symbol}}">{{unit.symbol}}</option> 
-            {% endfor %}
-            </select> 
-
-            <input type="submit"> 
-
-        </form> 
-        </div>
-    </div> 
+                {{form(form)}}
+                <p><strong>Votre réponse: {{reponse}}</strong></p>
+            </div>
+        </div> 
+    </div>
 </div> 
-
-
-
-    
-
-
-
-
-
-</div>
 
 {% endblock %}
