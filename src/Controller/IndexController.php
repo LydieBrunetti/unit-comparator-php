@@ -48,7 +48,7 @@ class IndexController extends AbstractController
     const ERROR_CODE = 400;
 
     /**
-     * @Route("/convert", name="convert", methods={"POST"})
+     * @Route("/converting", name="converting", methods={"POST"})
      * UserStory 1 : m² to hectare
      * @param Request $request
      * @return JsonResponse
@@ -135,23 +135,6 @@ class IndexController extends AbstractController
         return new JsonResponse($myObject);
     }
 
-    /**
-     * @Route("/unit", name="unit", methods={"GET"})
-     * UserStory 1 : m² to hectare
-     * @return void
-     */
-    public function unit()
-    {
-        $fausseExtraction =[
-            ['unit' => 'm2', 'definition' => 'Un carré de 1m x 1m','source'=>'https://fr.wikipedia.org/wiki/M%C3%A8tre_carr%C3%A9'],
-            ['unit' => 'ha', 'definition' => 'Un carré de 100m x 100m','source'=>'https://fr.wikipedia.org/wiki/Hectare'],
-            ['unit' => 'kW', 'definition' => 'Unité de puissance, multiple du watt, et valant 1000 watts','source'=>'https://www.actu-environnement.com/ae/dictionnaire_environnement/definition/kilowatt_kw.php4'],
-            ['unit' => 'kg CO2', 'definition' => 'Quantité de gaz à effet de serre','source'=>'https://fr.wikipedia.org/wiki/%C3%89quivalent_CO2'],
-        ];
-
-        $myObject = new JSONToReturn($fausseExtraction);
-        return new JsonResponse($myObject);
-    }
 
     /**
 
